@@ -1,0 +1,37 @@
+{
+    "name": "vercel-typescript-development",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "dev",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscodevim.vim",
+                "Catppuccin.catppuccin-vsc",
+                "Catppuccin.catppuccin-vsc-icons"
+            ],
+            "settings": {
+                "vim.smartRelativeLine": true,
+                "vim.handleKeys": {
+                    "<C-d>": true,
+                    "<C-s>": false,
+                    "<C-z>": false,
+                    "<C-p>": false
+                },
+                "terminal.integrated.commandsToSkipShell": [
+                    "workbench.action.toggleSidebarVisibility"
+                ],
+                // Catppuccine setup
+                "editor.semanticHighlighting.enabled": true,
+                "terminal.integrated.minimumContrastRatio": 2,
+                // applicable if you use Go, this is an opt-in flag!
+                "gopls": {
+                    "ui.semanticTokens": true
+                },
+                "workbench.colorTheme": "Catppuccin Mocha",
+                "workbench.iconTheme": "catppuccin-macchiato",
+                "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib"
+            }
+        }
+    }
+}
