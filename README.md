@@ -4,6 +4,15 @@ Repository of my commonly used dev-containers.
 ## How to use
 Branches specify the type of dev container configuration/ how to use it.  Simply clone the desired branch into the .devcontainer file in vscode and rebuild the container
 
+### General cloning
+*Prerequisites: clear out .devcontainer file before cloning branch*
+
+```bash
+# Update <branch name> to your desired branch
+# Clone <branch name> branch into current directory
+git clone https://github.com/acgriswold/dev-container.git --branch "<branch name>" ./.devcontainer
+```
+
 ### Vercel nodejs container
 
 ```bash
