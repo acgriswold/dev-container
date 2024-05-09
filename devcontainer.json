@@ -1,0 +1,43 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "Node.js & TypeScript",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	// "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye"
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"postCreateCommand": "bash ${localWorkspaceFolder}/.devcontainer/setup.sh ${localWorkspaceFolder}",
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vscodevim.vim",
+				"Catppuccin.catppuccin-vsc",
+				"Catppuccin.catppuccin-vsc-icons"
+			],
+			"settings": {
+				"vim.smartRelativeLine": true,
+				"vim.handleKeys": {
+					"<C-d>": true,
+					"<C-s>": false,
+					"<C-z>": false,
+					"<C-p>": false
+				},
+				"terminal.integrated.commandsToSkipShell": [
+					"workbench.action.toggleSidebarVisibility"
+				],
+				// Catppuccine setup
+				"editor.semanticHighlighting.enabled": true,
+				"terminal.integrated.minimumContrastRatio": 2,
+				// applicable if you use Go, this is an opt-in flag!
+				"gopls": {
+					"ui.semanticTokens": true
+				},
+				"workbench.colorTheme": "Catppuccin Mocha",
+				"workbench.iconTheme": "catppuccin-macchiato",
+				"typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib"
+			}
+		}
+	}
+}
