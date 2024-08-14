@@ -1,12 +1,13 @@
 {
     "name": "Go",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/go:0-1.19-bullseye",
-
-    "postCreateCommand": "go mod download",
-    
+    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+    "image": "mcr.microsoft.com/devcontainers/go:0-1.19-bullseye",
+    "postCreateCommand": "bash ${localWorkspaceFolder}/.devcontainer/setup.sh ${localWorkspaceFolder} && go mod download",
     "customizations": {
         "extensions": [
+            "vscodevim.vim",
+            "Catppuccin.catppuccin-vsc",
+            "Catppuccin.catppuccin-vsc-icons"
         ],
         "settings": {
             "files.eol": "\n",
@@ -40,7 +41,22 @@
             },
             "remote.extensionKind": {
                 "ms-azuretools.vscode-docker": "workspace"
-            }
+            },
+            "vim.smartRelativeLine": true,
+            "vim.handleKeys": {
+                "<C-d>": true,
+                "<C-s>": false,
+                "<C-z>": false,
+                "<C-p>": false
+            },
+            "terminal.integrated.commandsToSkipShell": [
+                "workbench.action.toggleSidebarVisibility"
+            ],
+            // Catppuccine setup
+            "editor.semanticHighlighting.enabled": true,
+            "terminal.integrated.minimumContrastRatio": 2,
+            "workbench.colorTheme": "Catppuccin Mocha",
+            "workbench.iconTheme": "catppuccin-macchiato"
         }
     }
 }

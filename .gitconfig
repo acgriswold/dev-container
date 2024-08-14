@@ -1,0 +1,59 @@
+
+[user]
+    name = <your name>
+    email = <your email>
+
+[branch]
+    autosetuprebase = always
+
+[help]
+	autocorrect = 20
+
+[fetch]
+    prune = true
+
+[alias]
+    hi = !echo "hello"
+
+    main = !git checkout main && git pull origin
+    dev = !git checkout dev && git pull origin
+    staging = !git checkout staging && git pull origin staging
+    last = checkout - # or checkout @{-1}
+   
+    # Git edit message
+    em = !git add . && git commit --amend --no-edit
+    patch = !git add . && git commit --amend --no-edit
+    amend = commit --amend --no-edit
+    # Rebase current branch onto main (change to whatever your main branch of choice is)
+    update = pull --rebase origin main
+    rh = reset HEAD~1 --mixed
+    push-up = !git push -u origin `git branch --show-current`
+
+    cm = !git add . && git commit -m
+    sc = !git switch -c ${1} && git push-up
+
+    # Delete all merged branches besides checkout/main (change to whatever your main branch of choice is)
+    prune-local-dry = !git branch --merged | awk '!/\\*|main/' | cut -c 2-
+    prune-local = !git prune-local-dry | xargs git branch -d
+    prune-local-force = !git prune-local-dry | xargs git branch -D
+   
+    # Create and checkout branch based on remote HEAD
+    create = "!f(){ git fetch && git checkout -b ${1} origin/HEAD && git branch --unset-upstream; };f"
+   
+    # Stop and remove all changes
+    nah = "!git reset --hard; git clean -df; if [ -d ".git/rebase-apply" ] || [ -d ".git/rebase-merge" ]; then git rebase --abort; fi;"
+   
+    # Single line logs
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s\\ %Cblue[%cn]%Creset" --decorate --numstat
+    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]%Creset" --decorate --date=relative
+
+    fast = "!f() { \
+        tput setab 2; tput setaf 2; \
+        git switch -c \"$1\" && git pull; \
+        tput sgr0; \
+    }; f"
+    
+    # List all aliases
+    aliases = "!git config -l | grep alias | cut -c 7-"
+[credential]
+	helper = "!f() { /home/node/.vscode-server/bin/f1e16e1e6214d7c44d078b1f0607b2388f29d729/node /tmp/vscode-remote-containers-cd1db44b-4002-49ba-94d1-9907019cd9d4.js git-credential-helper $*; }; f"
