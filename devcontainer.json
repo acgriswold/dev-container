@@ -1,7 +1,7 @@
 {
     "name": "Go",
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "image": "mcr.microsoft.com/devcontainers/go:0-1.19-bullseye",
+    "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bullseye",
     "postCreateCommand": "bash ${localWorkspaceFolder}/.devcontainer/setup.sh ${localWorkspaceFolder} && go mod download",
     "customizations": {
         "extensions": [
